@@ -26,6 +26,7 @@ class NRoomVaccumCleanerEnvironment(Environment):
         self.delay = 1000
         self.step = 1
         self.action = ""
+        self.score = 0
 
     def executeStep(self, n=1):
         for _ in range(0, n):
@@ -35,12 +36,19 @@ class NRoomVaccumCleanerEnvironment(Environment):
             self.action = res
             if res == 'clean':
                 self.currentRoom.status = 'clean'
+                self.score += 25
             elif res == 'right':
                 idx = (self.rooms.index(self.currentRoom) + 1) % self.n
                 self.currentRoom = self.rooms[idx]
+                self.score -= 1
             else:
                 idx = (self.rooms.index(self.currentRoom) - 1 + self.n) % self.n
                 self.currentRoom = self.rooms[idx]
+                self.score -= 1
+
+            if self.currentRoom.status == 'dirty':
+                self.score -= 10
+            self.displayScore()
             self.displayAction()
             self.step += 1
 
@@ -54,6 +62,10 @@ class NRoomVaccumCleanerEnvironment(Environment):
     def displayAction(self):
         print(
             "------- Action taken at step %d is [%s]" % (self.step, self.action))
+
+    def displayScore(self):
+        print(
+            "------- Score taken at step %d is %d" % (self.step, self.score))
 
 
 class Room:
