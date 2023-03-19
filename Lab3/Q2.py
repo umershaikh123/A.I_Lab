@@ -1,7 +1,6 @@
 # a Python program to find if a given string starts with a given character using Lambda.
 
-def starts_with_char(string, char): return string[0] == char
-
+starts_with_char = lambda string, char: string[0] == char
 
 # Testing the Lambda function with sample data
 string1 = "Hello, world!"
