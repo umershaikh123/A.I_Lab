@@ -105,5 +105,5 @@ class VaccumAgent(Agent):
 
 if __name__ == '__main__':
     vcagent = VaccumAgent()
-    env = NRoomVaccumCleanerEnvironment(vcagent, 4)
+    env = NRoomVaccumCleanerEnvironment(vcagent, 10)
     env.executeStep(50)
