@@ -98,8 +98,8 @@ class VaccumAgent(Agent):
     def act(self):
         if self.environment.currentRoom.status == 'dirty':
             return 'clean'
-        if self.environment.currentRoom.location == str(self.environment.n):
-            return 'left'
+        # if self.environment.currentRoom.location == str(self.environment.n):
+        #     return 'left'
         return 'right'
 
 
